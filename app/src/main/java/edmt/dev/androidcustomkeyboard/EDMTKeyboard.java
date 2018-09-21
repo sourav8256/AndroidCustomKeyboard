@@ -7,8 +7,10 @@ import android.inputmethodservice.Keyboard;
 import android.inputmethodservice.KeyboardView;
 import android.media.AudioManager;
 import android.os.IBinder;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.ExtractedTextRequest;
 import android.view.inputmethod.InputConnection;
 
 public class EDMTKeyboard extends InputMethodService implements KeyboardView.OnKeyboardActionListener {
@@ -41,13 +43,19 @@ public class EDMTKeyboard extends InputMethodService implements KeyboardView.OnK
 
     }
 
+    InputConnection ic;
+
     @Override
     public void onKey(int i, int[] ints) {
 
-        InputConnection ic = getCurrentInputConnection();
+        ic = getCurrentInputConnection();
+        //ic.commitText();
         playClick(i);
         switch (i)
         {
+            case 150:
+                replaceAll("hello");
+                break;
             case Keyboard.KEYCODE_DELETE:
                 ic.deleteSurroundingText(1,0);
             break;
@@ -87,9 +95,17 @@ public class EDMTKeyboard extends InputMethodService implements KeyboardView.OnK
         }
     }
 
+    void replaceAll(CharSequence cs){
+        CharSequence currentText = ic.getExtractedText(new ExtractedTextRequest(), 0).text;
+        CharSequence beforCursorText = ic.getTextBeforeCursor(currentText.length(), 0);
+        CharSequence afterCursorText = ic.getTextAfterCursor(currentText.length(), 0);
+        ic.deleteSurroundingText(beforCursorText.length(), afterCursorText.length());
+        ic.commitText(cs,1);
+    }
+
     @Override
     public void onText(CharSequence charSequence) {
-
+        Log.d("mylog",charSequence.toString());
     }
 
     @Override
