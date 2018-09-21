@@ -49,11 +49,29 @@ public class EDMTKeyboard extends InputMethodService implements KeyboardView.OnK
         notes = getNotes();
         kv = (KeyboardView)getLayoutInflater().inflate(R.layout.keyboard,null);
         keyboard = new Keyboard(this,R.xml.qwerty);
-
+        resetLabels();
         kv.setKeyboard(keyboard);
         kv.setOnKeyboardActionListener(this);
         return kv;
     }
+
+
+    void resetLabels(){
+
+        List<Keyboard.Key> keys = keyboard.getKeys();
+
+
+            Keyboard.Key key = keys.get(0);
+            key.label = " ";
+            key = keys.get(1);
+            key.label = " ";
+            key = keys.get(2);
+            key.label = " ";
+
+        kv.invalidateAllKeys();
+    }
+
+
 
     @Override
     public void onPress(int i) {
@@ -67,27 +85,43 @@ public class EDMTKeyboard extends InputMethodService implements KeyboardView.OnK
 
     InputConnection ic;
 
+    // making searchnotes global so it retains the search
+    JSONArray searchNotes = new JSONArray();
+
     @Override
     public void onKey(int i, int[] ints) {
 
+        notes = getNotes();
         ic = getCurrentInputConnection();
         //ic.commitText();
         CharSequence currentText = null;
-        JSONArray searchNotes = new JSONArray();
-        try {
-            currentText = ic.getExtractedText(new ExtractedTextRequest(), 0).text;
-            searchNotes = searchResult(currentText.toString(),notes);
-            updateLabels(searchNotes);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
+
+
+
+            // we shouldn't search if one of the suggestions is clicked
+            if((i!=150 && i!=151 && i!=152) && ic!=null && ic.getExtractedText(new ExtractedTextRequest(), 0)!=null) {
+                currentText = ic.getExtractedText(new ExtractedTextRequest(), 0).text;
+                String text = currentText.toString();
+                String lastWord = text.substring(text.lastIndexOf(" ") + 1);
+                if(i==32){
+                    searchNotes = searchResult("", notes);
+                } else {
+                    searchNotes = searchResult(lastWord, notes);
+                }
+                updateLabels(searchNotes);
+            }
 
         playClick(i);
         getNotes();
+
+        List<Keyboard.Key> keys = keyboard.getKeys();
+        Keyboard.Key key;
+
         switch (i)
         {
             case 150:
+                key = keys.get(0);
                 try {
                     replaceAll(searchNotes.getJSONObject(0).getString(NOTE_BODY));
                 } catch (JSONException e) {
@@ -95,6 +129,7 @@ public class EDMTKeyboard extends InputMethodService implements KeyboardView.OnK
                 }
                 break;
             case 151:
+                key = keys.get(1);
                 try {
                     replaceAll(searchNotes.getJSONObject(1).getString(NOTE_BODY));
                 } catch (JSONException e) {
@@ -102,6 +137,7 @@ public class EDMTKeyboard extends InputMethodService implements KeyboardView.OnK
                 }
                 break;
             case 152:
+                key = keys.get(2);
                 try {
                     replaceAll(searchNotes.getJSONObject(2).getString(NOTE_BODY));
                 } catch (JSONException e) {
@@ -132,23 +168,63 @@ public class EDMTKeyboard extends InputMethodService implements KeyboardView.OnK
     void updateLabels(JSONArray notes){
 
         List<Keyboard.Key> keys = keyboard.getKeys();
+        int LENGTH = 3;
 
         try {
+
+            String[] suggestions = new String[LENGTH];
+
+
+            Keyboard.Key key;
+
+            for(int i = 0;i<LENGTH;i++){
+                if(i<notes.length()) {
+                    suggestions[i] = notes.getJSONObject(i).getString(NOTE_BODY);
+                    if (suggestions[i] == null && i > 0 && suggestions[i].equals(suggestions[i - 1]))
+                        suggestions[i] = " ";
+                    key = keys.get(i);
+                    key.label = (i + 1) + ". " + formatStringforKeypad(suggestions[i]);
+                } else {
+                    key = keys.get(i);
+                    key.label = " ";
+                }
+            }
+
+/*            int i = 0;
+
             Keyboard.Key key = keys.get(0);
-            key.label = notes.optJSONObject(0).getString(NOTE_BODY);
-            key = null;
+            key.label = (i+1)+". "+formatStringforKeypad(suggestions[i++]);
             key = keys.get(1);
-            key.label = notes.optJSONObject(1).getString(NOTE_BODY);
-            key = null;
+            key.label = (i+1)+". "+formatStringforKeypad(suggestions[i++]);
             key = keys.get(2);
-            key.label = notes.optJSONObject(2).getString(NOTE_BODY);
-            key = null;
+            key.label = (i+1)+". "+formatStringforKeypad(suggestions[i++]);*/
         } catch (JSONException e) {
             e.printStackTrace();
-        } catch (NullPointerException e){
-            e.printStackTrace();
         }
+
         kv.invalidateAllKeys();
+    }
+
+
+    String formatStringforKeypad(String s){
+
+        int LENGTH = 50;
+
+        int endIndex = Math.min(LENGTH,s.length());
+
+        String res = s.substring(0,endIndex);
+        StringBuffer sb = new StringBuffer();
+        sb.append(res);
+        if(endIndex  == LENGTH){
+            sb.append("...");
+        } else {
+            for(int i = -15; i<LENGTH-s.length();i++){
+                sb.append(" ");
+            }
+        }
+
+        res = sb.toString();
+        return res;
     }
 
     private void playClick(int i) {
@@ -175,7 +251,14 @@ public class EDMTKeyboard extends InputMethodService implements KeyboardView.OnK
         CharSequence beforCursorText = ic.getTextBeforeCursor(currentText.length(), 0);
         CharSequence afterCursorText = ic.getTextAfterCursor(currentText.length(), 0);
         ic.deleteSurroundingText(beforCursorText.length(), afterCursorText.length());
-        ic.commitText(cs,1);
+        String someStr = currentText.toString();
+        try {
+            // a space " " has to be given manually between the joining of words
+            someStr = someStr.substring(0, someStr.lastIndexOf(" ")) +" "+ cs.toString();
+        } catch (Exception e){
+            someStr = cs.toString();
+        }
+        ic.commitText(someStr,0);
     }
 
     JSONArray getNotes(){
