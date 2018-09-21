@@ -75,4 +75,16 @@
         android:layout_alignParentLeft="true"
         android:background="@drawable/drop_shadow" />
 
+    <ImageButton
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:id="@+id/newNote"
+        android:scaleType="fitXY"
+        android:background="@drawable/ic_new_selector"
+        android:layout_marginBottom="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:contentDescription="@string/new_note_content_description" />
+
 </RelativeLayout>

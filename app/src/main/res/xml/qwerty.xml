@@ -6,24 +6,24 @@
     android:keyHeight="38dp">
 
     <Row>
-        <Key android:keyLabel=""
+        <Key android:keyLabel=" "
             android:keyWidth="100%p"
             android:keyEdgeFlags="left"
             android:codes="150"/>
     </Row>
 
     <Row>
-        <Key android:keyLabel=""
+        <Key android:keyLabel=" "
             android:keyWidth="100%p"
             android:keyEdgeFlags="left"
-            android:codes="49"/>
+            android:codes="151"/>
     </Row>
 
     <Row>
-        <Key android:keyLabel=""
+        <Key android:keyLabel=" "
             android:keyWidth="100%p"
             android:keyEdgeFlags="left"
-            android:codes="49"/>
+            android:codes="152"/>
     </Row>
 
     <Row>
@@ -78,7 +78,7 @@
     </Row>
 
     <Row>
-        <Key android:keyLabel="CAPS" android:keyEdgeFlags="left" android:codes="-1"/>
+        <Key android:keyIcon="@drawable/shift_key" android:keyEdgeFlags="left" android:codes="-1"/>
         <Key android:keyLabel="z" android:codes="122"/>
         <Key android:keyLabel="x" android:codes="120"/>
         <Key android:keyLabel="c" android:codes="99"/>

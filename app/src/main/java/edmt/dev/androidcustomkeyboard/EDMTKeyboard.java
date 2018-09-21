@@ -39,13 +39,14 @@ public class EDMTKeyboard extends InputMethodService implements KeyboardView.OnK
     private Keyboard keyboard;
 
     private  boolean isCaps = false;
-
+    JSONArray notes;
 
     //Press Ctrl+O
 
 
     @Override
     public View onCreateInputView() {
+        notes = getNotes();
         kv = (KeyboardView)getLayoutInflater().inflate(R.layout.keyboard,null);
         keyboard = new Keyboard(this,R.xml.qwerty);
 
@@ -71,11 +72,11 @@ public class EDMTKeyboard extends InputMethodService implements KeyboardView.OnK
 
         ic = getCurrentInputConnection();
         //ic.commitText();
-        JSONArray notes = getNotes();
         CharSequence currentText = null;
+        JSONArray searchNotes = new JSONArray();
         try {
             currentText = ic.getExtractedText(new ExtractedTextRequest(), 0).text;
-            JSONArray searchNotes = searchResult(currentText.toString(),notes);
+            searchNotes = searchResult(currentText.toString(),notes);
             updateLabels(searchNotes);
         } catch (Exception e) {
             e.printStackTrace();
@@ -87,7 +88,25 @@ public class EDMTKeyboard extends InputMethodService implements KeyboardView.OnK
         switch (i)
         {
             case 150:
-                replaceAll("hello");
+                try {
+                    replaceAll(searchNotes.getJSONObject(0).getString(NOTE_BODY));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                break;
+            case 151:
+                try {
+                    replaceAll(searchNotes.getJSONObject(1).getString(NOTE_BODY));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                break;
+            case 152:
+                try {
+                    replaceAll(searchNotes.getJSONObject(2).getString(NOTE_BODY));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 break;
             case Keyboard.KEYCODE_DELETE:
                 ic.deleteSurroundingText(1,0);

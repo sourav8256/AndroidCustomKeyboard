@@ -18,13 +18,15 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
-import edmt.dev.androidcustomkeyboard.ColorPicker.ColorPickerDialog;
 
-import static edmt.dev.androidcustomkeyboard.ColorPicker.ColorPickerSwatch.OnColorSelectedListener;
+import edmt.dev.androidcustomkeyboard.ColorPicker.ColorPickerDialog;
+import edmt.dev.androidcustomkeyboard.ColorPicker.ColorPickerSwatch;
+
 import static edmt.dev.androidcustomkeyboard.DataUtils.NEW_NOTE_REQUEST;
 import static edmt.dev.androidcustomkeyboard.DataUtils.NOTE_BODY;
 import static edmt.dev.androidcustomkeyboard.DataUtils.NOTE_COLOUR;
@@ -58,6 +60,8 @@ public class EditActivity extends AppCompatActivity implements Toolbar.OnMenuIte
     private AlertDialog fontDialog, saveChangesDialog;
     private ColorPickerDialog colorPickerDialog;
 
+    ImageButton newNote;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +71,7 @@ public class EditActivity extends AppCompatActivity implements Toolbar.OnMenuIte
         if (Build.VERSION.SDK_INT >= 18)
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_FULL_USER);
 
-        // Android version < 18 -> set orientation fullSensor
+            // Android version < 18 -> set orientation fullSensor
         else
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR);
 
@@ -89,6 +93,19 @@ public class EditActivity extends AppCompatActivity implements Toolbar.OnMenuIte
         bodyEdit = (EditText)findViewById(R.id.bodyEdit);
         relativeLayoutEdit = (RelativeLayout)findViewById(R.id.relativeLayoutEdit);
         ScrollView scrollView = (ScrollView)findViewById(R.id.scrollView);
+        newNote = (ImageButton)findViewById(R.id.newNote);
+        newNote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // If 'Yes' clicked -> check if title is empty
+                // If title not empty -> save and go back; Otherwise toast
+                if (!isEmpty(titleEdit) || !isEmpty(bodyEdit))
+                    saveChanges();
+
+                else
+                    toastEditTextCannotBeEmpty();
+            }
+        });
 
         imm = (InputMethodManager) this.getSystemService(INPUT_METHOD_SERVICE);
 
@@ -174,6 +191,10 @@ public class EditActivity extends AppCompatActivity implements Toolbar.OnMenuIte
     }
 
 
+
+
+
+
     /**
      * Implementation of AlertDialogs such as
      * - colorPickerDialog, fontDialog and saveChangesDialog -
@@ -186,7 +207,7 @@ public class EditActivity extends AppCompatActivity implements Toolbar.OnMenuIte
                 isTablet(this) ? ColorPickerDialog.SIZE_LARGE : ColorPickerDialog.SIZE_SMALL);
 
         // Colour picker listener in colour picker dialog
-        colorPickerDialog.setOnColorSelectedListener(new OnColorSelectedListener() {
+        colorPickerDialog.setOnColorSelectedListener(new ColorPickerSwatch.OnColorSelectedListener() {
             @Override
             public void onColorSelected(int color) {
                 // Format selected colour to string
@@ -359,7 +380,7 @@ public class EditActivity extends AppCompatActivity implements Toolbar.OnMenuIte
         if (bundle.getInt(NOTE_REQUEST_CODE) == NEW_NOTE_REQUEST)
             saveChangesDialog.show();
 
-        // Existing note
+            // Existing note
         else {
             /*
              * If title is not empty -> Check if note changed
@@ -368,10 +389,10 @@ public class EditActivity extends AppCompatActivity implements Toolbar.OnMenuIte
              */
             if (!isEmpty(titleEdit) || !isEmpty(bodyEdit)) {
                 if (!(titleEdit.getText().toString().equals(bundle.getString(NOTE_TITLE))) ||
-                    !(bodyEdit.getText().toString().equals(bundle.getString(NOTE_BODY))) ||
-                    !(colour.equals(bundle.getString(NOTE_COLOUR))) ||
-                    fontSize != bundle.getInt(NOTE_FONT_SIZE) ||
-                    hideBody != bundle.getBoolean(NOTE_HIDE_BODY)) {
+                        !(bodyEdit.getText().toString().equals(bundle.getString(NOTE_BODY))) ||
+                        !(colour.equals(bundle.getString(NOTE_COLOUR))) ||
+                        fontSize != bundle.getInt(NOTE_FONT_SIZE) ||
+                        hideBody != bundle.getBoolean(NOTE_HIDE_BODY)) {
 
                     saveChanges();
                 }
