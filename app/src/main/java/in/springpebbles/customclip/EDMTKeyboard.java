@@ -1,4 +1,4 @@
-package edmt.dev.androidcustomkeyboard;
+package in.springpebbles.customclip;
 
 import android.app.Service;
 import android.content.Intent;
@@ -24,14 +24,14 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import static edmt.dev.androidcustomkeyboard.DataUtils.BACKUP_FILE_NAME;
-import static edmt.dev.androidcustomkeyboard.DataUtils.BACKUP_FOLDER_PATH;
-import static edmt.dev.androidcustomkeyboard.DataUtils.NOTES_FILE_NAME;
-import static edmt.dev.androidcustomkeyboard.DataUtils.NOTE_BODY;
-import static edmt.dev.androidcustomkeyboard.DataUtils.NOTE_TITLE;
-import static edmt.dev.androidcustomkeyboard.DataUtils.isExternalStorageReadable;
-import static edmt.dev.androidcustomkeyboard.DataUtils.isExternalStorageWritable;
-import static edmt.dev.androidcustomkeyboard.DataUtils.retrieveData;
+import static in.springpebbles.customclip.DataUtils.BACKUP_FILE_NAME;
+import static in.springpebbles.customclip.DataUtils.BACKUP_FOLDER_PATH;
+import static in.springpebbles.customclip.DataUtils.NOTES_FILE_NAME;
+import static in.springpebbles.customclip.DataUtils.NOTE_BODY;
+import static in.springpebbles.customclip.DataUtils.NOTE_TITLE;
+import static in.springpebbles.customclip.DataUtils.isExternalStorageReadable;
+import static in.springpebbles.customclip.DataUtils.isExternalStorageWritable;
+import static in.springpebbles.customclip.DataUtils.retrieveData;
 
 public class EDMTKeyboard extends InputMethodService implements KeyboardView.OnKeyboardActionListener {
 
