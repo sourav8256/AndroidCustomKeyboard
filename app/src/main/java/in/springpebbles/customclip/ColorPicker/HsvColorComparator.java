@@ -1,4 +1,4 @@
-package edmt.dev.androidcustomkeyboard.ColorPicker;
+package in.springpebbles.customclip.ColorPicker;
 
 import android.graphics.Color;
 

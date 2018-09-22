@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="edmt.dev.androidcustomkeyboard">
+    package="in.springpebbles.customclip">
 
     <application
         android:allowBackup="true"
@@ -11,7 +11,7 @@
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <service
             android:name=".EDMTKeyboard"
-            android:label="EDMTKeyboard"
+            android:label="My Keyboard"
             android:permission="android.permission.BIND_INPUT_METHOD">
             <meta-data
                 android:name="android.view.im"
@@ -39,7 +39,7 @@
             android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.moonpi.swiftnotes.MainActivity" />
+                android:value="in.springpebbles.customclip.MainActivity" />
         </activity>
 
     </application>

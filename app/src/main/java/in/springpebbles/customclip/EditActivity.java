@@ -1,4 +1,4 @@
-package edmt.dev.androidcustomkeyboard;
+package in.springpebbles.customclip;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -24,16 +24,16 @@ import android.widget.ScrollView;
 import android.widget.Toast;
 
 
-import edmt.dev.androidcustomkeyboard.ColorPicker.ColorPickerDialog;
-import edmt.dev.androidcustomkeyboard.ColorPicker.ColorPickerSwatch;
+import in.springpebbles.customclip.ColorPicker.ColorPickerDialog;
+import in.springpebbles.customclip.ColorPicker.ColorPickerSwatch;
 
-import static edmt.dev.androidcustomkeyboard.DataUtils.NEW_NOTE_REQUEST;
-import static edmt.dev.androidcustomkeyboard.DataUtils.NOTE_BODY;
-import static edmt.dev.androidcustomkeyboard.DataUtils.NOTE_COLOUR;
-import static edmt.dev.androidcustomkeyboard.DataUtils.NOTE_FONT_SIZE;
-import static edmt.dev.androidcustomkeyboard.DataUtils.NOTE_HIDE_BODY;
-import static edmt.dev.androidcustomkeyboard.DataUtils.NOTE_REQUEST_CODE;
-import static edmt.dev.androidcustomkeyboard.DataUtils.NOTE_TITLE;
+import static in.springpebbles.customclip.DataUtils.NEW_NOTE_REQUEST;
+import static in.springpebbles.customclip.DataUtils.NOTE_BODY;
+import static in.springpebbles.customclip.DataUtils.NOTE_COLOUR;
+import static in.springpebbles.customclip.DataUtils.NOTE_FONT_SIZE;
+import static in.springpebbles.customclip.DataUtils.NOTE_HIDE_BODY;
+import static in.springpebbles.customclip.DataUtils.NOTE_REQUEST_CODE;
+import static in.springpebbles.customclip.DataUtils.NOTE_TITLE;
 
 
 public class EditActivity extends AppCompatActivity implements Toolbar.OnMenuItemClickListener {

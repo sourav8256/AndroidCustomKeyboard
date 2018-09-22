@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Swiftnotes</string>
+    <string name="app_name">My App</string>
     <string name="title_edit_notes_activity">Note</string>
     <!-- -->
     <string name="no_notes_text">Press \'+\' to add new note</string>

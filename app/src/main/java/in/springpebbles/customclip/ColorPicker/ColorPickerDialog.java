@@ -1,4 +1,4 @@
-package edmt.dev.androidcustomkeyboard.ColorPicker;
+package in.springpebbles.customclip.ColorPicker;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -12,9 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ProgressBar;
 
-import edmt.dev.androidcustomkeyboard.R;
+import in.springpebbles.customclip.R;
 
-import static edmt.dev.androidcustomkeyboard.ColorPicker.ColorPickerSwatch.*;
+import static in.springpebbles.customclip.ColorPicker.ColorPickerSwatch.*;
 
 
 /**

@@ -1,4 +1,4 @@
-package edmt.dev.androidcustomkeyboard;
+package in.springpebbles.customclip;
 
 import android.os.Environment;
 
@@ -14,9 +14,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static edmt.dev.androidcustomkeyboard.MainActivity.*;
-import static edmt.dev.androidcustomkeyboard.MainActivity.getBackupPath;
-import static edmt.dev.androidcustomkeyboard.MainActivity.getLocalPath;
+import static in.springpebbles.customclip.MainActivity.*;
+import static in.springpebbles.customclip.MainActivity.getBackupPath;
+import static in.springpebbles.customclip.MainActivity.getLocalPath;
 
 /*
     *   JSON file structure:

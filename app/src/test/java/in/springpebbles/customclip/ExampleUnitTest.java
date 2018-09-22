@@ -1,4 +1,4 @@
-package edmt.dev.androidcustomkeyboard;
+package in.springpebbles.customclip;
 
 import org.junit.Test;
 

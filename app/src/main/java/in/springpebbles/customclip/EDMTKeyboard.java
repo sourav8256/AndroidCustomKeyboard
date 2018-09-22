@@ -15,6 +15,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.ExtractedTextRequest;
 import android.view.inputmethod.InputConnection;
+import android.view.inputmethod.InputMethodManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,8 +36,13 @@ import static in.springpebbles.customclip.DataUtils.retrieveData;
 
 public class EDMTKeyboard extends InputMethodService implements KeyboardView.OnKeyboardActionListener {
 
+
+    // we will declare the final variables here
+    private final int KEYPAD_CHANGE_CODE = 1511;
+
+
     private KeyboardView kv;
-    private Keyboard keyboard;
+    private CustomKeyboard keyboard;
 
     private  boolean isCaps = false;
     JSONArray notes;
@@ -48,7 +54,7 @@ public class EDMTKeyboard extends InputMethodService implements KeyboardView.OnK
     public View onCreateInputView() {
         notes = getNotes();
         kv = (KeyboardView)getLayoutInflater().inflate(R.layout.keyboard,null);
-        keyboard = new Keyboard(this,R.xml.qwerty);
+        keyboard = new CustomKeyboard(this,R.xml.qwerty);
         resetLabels();
         kv.setKeyboard(keyboard);
         kv.setOnKeyboardActionListener(this);
@@ -82,6 +88,8 @@ public class EDMTKeyboard extends InputMethodService implements KeyboardView.OnK
     public void onRelease(int i) {
 
     }
+
+
 
     InputConnection ic;
 
@@ -120,6 +128,13 @@ public class EDMTKeyboard extends InputMethodService implements KeyboardView.OnK
 
         switch (i)
         {
+
+            // case 1511 intent for changing keyboard
+            case KEYPAD_CHANGE_CODE:
+                InputMethodManager imm = (InputMethodManager)getApplicationContext().getSystemService(INPUT_METHOD_SERVICE);
+                imm.showInputMethodPicker();
+                break;
+
             case 150:
                 key = keys.get(0);
                 try {

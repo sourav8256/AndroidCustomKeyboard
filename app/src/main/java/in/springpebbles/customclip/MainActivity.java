@@ -1,4 +1,4 @@
-package edmt.dev.androidcustomkeyboard;
+package in.springpebbles.customclip;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -32,22 +32,22 @@ import org.json.JSONObject;
 import java.io.File;
 import java.util.ArrayList;
 
-import static edmt.dev.androidcustomkeyboard.DataUtils.BACKUP_FILE_NAME;
-import static edmt.dev.androidcustomkeyboard.DataUtils.BACKUP_FOLDER_PATH;
-import static edmt.dev.androidcustomkeyboard.DataUtils.NEW_NOTE_REQUEST;
-import static edmt.dev.androidcustomkeyboard.DataUtils.NOTES_FILE_NAME;
-import static edmt.dev.androidcustomkeyboard.DataUtils.NOTE_BODY;
-import static edmt.dev.androidcustomkeyboard.DataUtils.NOTE_COLOUR;
-import static edmt.dev.androidcustomkeyboard.DataUtils.NOTE_FAVOURED;
-import static edmt.dev.androidcustomkeyboard.DataUtils.NOTE_FONT_SIZE;
-import static edmt.dev.androidcustomkeyboard.DataUtils.NOTE_HIDE_BODY;
-import static edmt.dev.androidcustomkeyboard.DataUtils.NOTE_REQUEST_CODE;
-import static edmt.dev.androidcustomkeyboard.DataUtils.NOTE_TITLE;
-import static edmt.dev.androidcustomkeyboard.DataUtils.deleteNotes;
-import static edmt.dev.androidcustomkeyboard.DataUtils.isExternalStorageReadable;
-import static edmt.dev.androidcustomkeyboard.DataUtils.isExternalStorageWritable;
-import static edmt.dev.androidcustomkeyboard.DataUtils.retrieveData;
-import static edmt.dev.androidcustomkeyboard.DataUtils.saveData;
+import static in.springpebbles.customclip.DataUtils.BACKUP_FILE_NAME;
+import static in.springpebbles.customclip.DataUtils.BACKUP_FOLDER_PATH;
+import static in.springpebbles.customclip.DataUtils.NEW_NOTE_REQUEST;
+import static in.springpebbles.customclip.DataUtils.NOTES_FILE_NAME;
+import static in.springpebbles.customclip.DataUtils.NOTE_BODY;
+import static in.springpebbles.customclip.DataUtils.NOTE_COLOUR;
+import static in.springpebbles.customclip.DataUtils.NOTE_FAVOURED;
+import static in.springpebbles.customclip.DataUtils.NOTE_FONT_SIZE;
+import static in.springpebbles.customclip.DataUtils.NOTE_HIDE_BODY;
+import static in.springpebbles.customclip.DataUtils.NOTE_REQUEST_CODE;
+import static in.springpebbles.customclip.DataUtils.NOTE_TITLE;
+import static in.springpebbles.customclip.DataUtils.deleteNotes;
+import static in.springpebbles.customclip.DataUtils.isExternalStorageReadable;
+import static in.springpebbles.customclip.DataUtils.isExternalStorageWritable;
+import static in.springpebbles.customclip.DataUtils.retrieveData;
+import static in.springpebbles.customclip.DataUtils.saveData;
 
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener,
@@ -491,15 +491,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                     .setPositiveButton(R.string.yes_button, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            try {
-                                startActivity(new Intent(Intent.ACTION_VIEW,
-                                        Uri.parse("market://details?id=" + appPackageName)));
 
-                            } catch (android.content.ActivityNotFoundException anfe) {
-                                startActivity(new Intent(Intent.ACTION_VIEW,
-                                        Uri.parse("http://play.google.com/store/apps/details?id="
-                                                + appPackageName)));
-                            }
                         }
                     })
                     .setNegativeButton(R.string.no_button, new DialogInterface.OnClickListener() {

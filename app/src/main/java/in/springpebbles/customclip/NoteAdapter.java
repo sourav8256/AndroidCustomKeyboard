@@ -1,4 +1,4 @@
-package edmt.dev.androidcustomkeyboard;
+package in.springpebbles.customclip;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -18,18 +18,18 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import static edmt.dev.androidcustomkeyboard.DataUtils.*;
-import static edmt.dev.androidcustomkeyboard.DataUtils.NOTE_BODY;
-import static edmt.dev.androidcustomkeyboard.DataUtils.NOTE_COLOUR;
-import static edmt.dev.androidcustomkeyboard.DataUtils.NOTE_FAVOURED;
-import static edmt.dev.androidcustomkeyboard.DataUtils.NOTE_FONT_SIZE;
-import static edmt.dev.androidcustomkeyboard.DataUtils.NOTE_HIDE_BODY;
-import static edmt.dev.androidcustomkeyboard.DataUtils.NOTE_TITLE;
-import static edmt.dev.androidcustomkeyboard.MainActivity.*;
-import static edmt.dev.androidcustomkeyboard.MainActivity.checkedArray;
-import static edmt.dev.androidcustomkeyboard.MainActivity.deleteActive;
-import static edmt.dev.androidcustomkeyboard.MainActivity.searchActive;
-import static edmt.dev.androidcustomkeyboard.MainActivity.setFavourite;
+import static in.springpebbles.customclip.DataUtils.*;
+import static in.springpebbles.customclip.DataUtils.NOTE_BODY;
+import static in.springpebbles.customclip.DataUtils.NOTE_COLOUR;
+import static in.springpebbles.customclip.DataUtils.NOTE_FAVOURED;
+import static in.springpebbles.customclip.DataUtils.NOTE_FONT_SIZE;
+import static in.springpebbles.customclip.DataUtils.NOTE_HIDE_BODY;
+import static in.springpebbles.customclip.DataUtils.NOTE_TITLE;
+import static in.springpebbles.customclip.MainActivity.*;
+import static in.springpebbles.customclip.MainActivity.checkedArray;
+import static in.springpebbles.customclip.MainActivity.deleteActive;
+import static in.springpebbles.customclip.MainActivity.searchActive;
+import static in.springpebbles.customclip.MainActivity.setFavourite;
 
 
 /**

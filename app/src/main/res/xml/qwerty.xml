@@ -86,12 +86,12 @@
         <Key android:keyLabel="b" android:codes="98"/>
         <Key android:keyLabel="n" android:codes="110"/>
         <Key android:keyLabel="m" android:codes="109"/>
-        <Key android:keyLabel="." android:codes="46"/>
+        <Key android:keyLabel=". ," android:codes="46,44"/>
         <Key android:keyLabel="\? ! :" android:keyEdgeFlags="right" android:codes="63,33,58"/>
     </Row>
 
     <Row android:rowEdgeFlags="bottom">
-        <Key android:keyLabel="," android:keyWidth="10%p" android:keyEdgeFlags="left" android:codes="44"/>
+        <Key android:keyIcon="@drawable/keypad" android:keyWidth="10%p" android:keyEdgeFlags="left" android:codes="1511"/>
         <Key android:keyLabel="/" android:keyWidth="10%p"  android:codes="47"/>
         <Key android:keyLabel="SPACE" android:keyWidth="40%p" android:isRepeatable="true" android:codes="32"/>
         <Key android:keyIcon="@drawable/ic_backspace_black_24dp" android:keyWidth="20%p" android:isRepeatable="true" android:codes="-5"/>

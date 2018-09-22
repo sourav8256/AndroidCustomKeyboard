@@ -1,4 +1,4 @@
-package edmt.dev.androidcustomkeyboard.ColorPicker;
+package in.springpebbles.customclip.ColorPicker;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
-import edmt.dev.androidcustomkeyboard.R;
+import in.springpebbles.customclip.R;
 
 
 /**
